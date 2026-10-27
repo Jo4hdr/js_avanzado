@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego con Canvas</title>
+</head>
+<body>
+
+    <h2>Juego: Mueve la pelota</h2>
+
+    <canvas id="juego" width="400" height="300"
+        style="border: 2px solid green;">
+    </canvas>
+
+    <script>
+        const canvas = document.getElementById("juego");
+        const ctx = canvas.getContext("2d");
+
+        let x = 200;
+        let y = 150;
+
+        function dibujar() {
+            ctx.clearRect(0, 0, 400, 300);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, Math.PI * 2);
+            ctx.fillStyle = "green";
+            ctx.fill();
+        }
+
+        document.addEventListener("keydown", function(evento) {
+            if (evento.key === "ArrowUp" && y > 20) y -= 10;
+            if (evento.key === "ArrowDown" && y < 280) y += 10;
+            if (evento.key === "ArrowLeft" && x > 20) x -= 10;
+            if (evento.key === "ArrowRight" && x < 380) x += 10;
+
+            dibujar();
+        });
+
+        dibujar();
+    </script>
+
+</body>
+</html>
